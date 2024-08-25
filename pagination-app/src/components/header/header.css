@@ -1,0 +1,30 @@
+.containers {
+  background-color: #009879;
+  padding: 10px 10px;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+nav .logo {
+  margin-left: 50px;
+  font-size: 30px;
+  color: #720e9e;
+  font-weight: 600;
+}
+nav .logo .logospan {
+  color: aqua;
+}
+nav ul {
+  margin: 10px 25px;
+}
+nav ul li {
+  display: inline-block;
+  align-items: center;
+  padding: 0 20px;
+  list-style: none;
+  font-size: 20px;
+  cursor: pointer;
+}
