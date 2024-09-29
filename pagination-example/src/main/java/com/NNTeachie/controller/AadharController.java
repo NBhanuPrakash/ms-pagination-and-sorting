@@ -15,24 +15,22 @@ public class AadharController {
     @Autowired
     private AadharService aadharService;
 
-    public AadharController() {
-    }
 
     @PostMapping
     public List<Aadhar> save(@RequestBody List<Aadhar> aadhar) {
-        List<Aadhar> save = this.aadharService.save(aadhar);
+        List<Aadhar> save = aadharService.save(aadhar);
         return save;
     }
 
     @GetMapping
     public ApiResponse<List<Aadhar>> getAll(@RequestParam int offSet, @RequestParam int pageSize) {
-        List<Aadhar> save = this.aadharService.getAllProducts(offSet, pageSize);
-        return new ApiResponse<>(this.aadharService.all(), save);
+        List<Aadhar> save = aadharService.getAllProducts(offSet, pageSize);
+        return new ApiResponse<>(aadharService.all(), save);
     }
 
     @GetMapping({"/{fieldName}"})
     public ApiResponse<List<Aadhar>> getAll(@PathVariable String fieldName, @RequestParam int offSet, @RequestParam int pageSize) {
-        List<Aadhar> save = this.aadharService.getAllProductsSort(fieldName, offSet, pageSize);
-        return new ApiResponse<>(this.aadharService.all(), save);
+        List<Aadhar> save = aadharService.getAllProductsSort(fieldName, offSet, pageSize);
+        return new ApiResponse<>(aadharService.all(), save);
     }
 }

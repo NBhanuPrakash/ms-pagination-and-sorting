@@ -14,26 +14,23 @@ public class AadharService {
     @Autowired
     private AadharRepo aadharRepo;
 
-    public AadharService() {
-    }
-
     public List<Aadhar> save(List<Aadhar> aadhar) {
-        List<Aadhar> save = this.aadharRepo.saveAll(aadhar);
+        List<Aadhar> save = aadharRepo.saveAll(aadhar);
         return save;
     }
 
     public int all() {
-        int count = (int)this.aadharRepo.count();
+        int count = (int)aadharRepo.count();
         return count;
     }
 
     public List<Aadhar> getAllProducts(int offset, int pagesize) {
         PageRequest pageRequest = PageRequest.of(offset, pagesize);
-        return this.aadharRepo.findAll(pageRequest).stream().toList();
+        return aadharRepo.findAll(pageRequest).stream().toList();
     }
 
     public List<Aadhar> getAllProductsSort(String filedName, int offSet, int pageSize) {
         PageRequest pageRequest = PageRequest.of(offSet, pageSize, Sort.by(Direction.ASC, new String[]{filedName}));
-        return this.aadharRepo.findAll(pageRequest).stream().toList();
+        return aadharRepo.findAll(pageRequest).stream().toList();
     }
 }
