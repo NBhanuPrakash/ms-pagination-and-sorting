@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "4282e11e-7de6-431d-9f6f-3a0a8379886d",
+		"name": "pagination-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30467112"
+	},
+	"item": [
+		{
+			"name": "pagination-collection",
+			"item": [
+				{
+					"name": "http://localhost:8080/aadhar/id?offSet=5&pageSize=10",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/aadhar/id?offSet=5&pageSize=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"aadhar",
+								"id"
+							],
+							"query": [
+								{
+									"key": "offSet",
+									"value": "5"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/aadhar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"personName\": \"Gopi Krishna\",\r\n        \"aadharId\": \"986346289733\",\r\n        \"gender\": \"male\"\r\n    }\r\n]\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/aadhar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"aadhar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/aadhar?offSet=5&pageSize=10",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/aadhar?offSet=5&pageSize=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"aadhar"
+							],
+							"query": [
+								{
+									"key": "offSet",
+									"value": "5"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
