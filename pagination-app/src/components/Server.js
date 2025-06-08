@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "http://localhost:8080/aadhar";
+const URL = "http://localhost:8082/aadhar";
 
 export const fetchAadharData = async (offSet, pageSize) => {
   try {
