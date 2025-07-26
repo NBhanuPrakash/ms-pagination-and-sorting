@@ -1,4 +1,5 @@
-/* table.css */
+/* Existing styles remain unchanged */
+
 .table-container {
   max-width: 1500px;
   margin: 50px auto;
@@ -53,19 +54,19 @@
   background-color: #f1f1f1;
   cursor: pointer;
 }
-/* table.css */
-/* Existing styles */
 
+/* Pagination styles */
 .pagination-controls {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .pagination-controls button {
   padding: 10px 15px;
-  margin: 0 5px;
   border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #009879;
@@ -80,14 +81,15 @@
 
 .page-numbers {
   display: flex;
-  margin-left: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
 }
 
 .page-numbers button {
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  margin: 0 5px;
   background-color: #f0f0f0;
   color: #333;
   cursor: pointer;
@@ -98,6 +100,7 @@
   color: white;
 }
 
+/* Page size selector */
 .page-size-control {
   display: flex;
   align-items: center;
@@ -129,3 +132,44 @@
   border-color: #007bff;
   outline: none;
 }
+
+/* ---------------- Mobile View ---------------- */
+@media (max-width: 768px) {
+  .styled-table thead {
+    display: none;
+  }
+
+  .styled-table, 
+  .styled-table tbody, 
+  .styled-table tr, 
+  .styled-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .styled-table tr {
+    margin-bottom: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .styled-table td {
+    padding: 8px;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+  }
+
+  .styled-table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+  }
+}
+

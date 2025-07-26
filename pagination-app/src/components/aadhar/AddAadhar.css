@@ -48,3 +48,47 @@ button:disabled {
   color: red;
   margin-top: 10px;
 }
+
+/* Mobile View */
+@media (max-width: 768px) {
+  .add-aadhar-container {
+    padding: 20px;
+    margin: 20px auto;
+  }
+
+  .add-aadhar-container h2 {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+
+  .form-group input,
+  .form-group select {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    margin-top: 10px;
+  }
+
+  .error {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+  }
+}

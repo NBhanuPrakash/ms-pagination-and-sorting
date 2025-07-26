@@ -7,12 +7,12 @@ const ClassicTable = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [pageSize, setPageSize] = useState(10); // Default page size
+  const [pageSize, setPageSize] = useState(10);
   const [offset, setOffset] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [fieldName, setFieldName] = useState("id");
-  const [sortOrder, setSortOrder] = useState("asc"); // Track sorting order
+  const [sortOrder, setSortOrder] = useState("asc");
 
   const getData = async (fieldName, newOffset, newPageSize) => {
     try {
@@ -56,86 +56,91 @@ const ClassicTable = () => {
   const handlePageSizeChange = (event) => {
     const newPageSize = parseInt(event.target.value, 10);
     setPageSize(newPageSize);
-    setOffset(0); // Reset to the first page
-    setCurrentPage(1); // Reset the current page
+    setOffset(0);
+    setCurrentPage(1);
   };
 
   const handleSortChange = (field) => {
     const newSortOrder = sortOrder === "asc" ? "desc" : "asc";
     setSortOrder(newSortOrder);
     setFieldName(field);
-    setOffset(0); // Reset to first page on sort change
+    setOffset(0);
   };
 
   const getSortSymbol = (field) => {
     if (fieldName === field) {
       return sortOrder === "asc" ? "↓" : "↑";
     }
-    return "↑"; // Default symbol if not sorting by this field
+    return "↑";
   };
 
   return (
     <div className="table-container">
       <h2 className="table-title">Government Aadhar Details</h2>
+
       <div className="page-size-control">
-        <label htmlFor="pageSize">Page Size: </label>
+        <label htmlFor="pageSize">Page Size:</label>
         <select id="pageSize" value={pageSize} onChange={handlePageSizeChange}>
           <option value={10}>10</option>
           <option value={20}>20</option>
           <option value={50}>50</option>
         </select>
       </div>
-      <table className="styled-table">
-        <thead>
-          <tr>
-            <th>S.No</th>
-            <th>ID</th>
-            <th
-              onClick={() => handleSortChange("personName")}
-              style={{ cursor: "pointer" }}
-            >
-              Name {getSortSymbol("personName")}
-            </th>
-            <th
-              onClick={() => handleSortChange("aadharId")}
-              style={{ cursor: "pointer" }}
-            >
-              Aadhar Number {getSortSymbol("aadharId")}
-            </th>
-            <th
-              onClick={() => handleSortChange("gender")}
-              style={{ cursor: "pointer" }}
-            >
-              Gender {getSortSymbol("gender")}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {loading ? (
+
+      <div className="table-wrapper">
+        <table className="styled-table">
+          <thead>
             <tr>
-              <td colSpan="5" style={{ textAlign: "center" }}>
-                <Spinner />
-              </td>
+              <th>S.No</th>
+              <th>ID</th>
+              <th
+                onClick={() => handleSortChange("personName")}
+                style={{ cursor: "pointer" }}
+              >
+                Name {getSortSymbol("personName")}
+              </th>
+              <th
+                onClick={() => handleSortChange("aadharId")}
+                style={{ cursor: "pointer" }}
+              >
+                Aadhar Number {getSortSymbol("aadharId")}
+              </th>
+              <th
+                onClick={() => handleSortChange("gender")}
+                style={{ cursor: "pointer" }}
+              >
+                Gender {getSortSymbol("gender")}
+              </th>
             </tr>
-          ) : error ? (
-            <tr>
-              <td colSpan="5" style={{ textAlign: "center" }}>
-                Error: {error.message}
-              </td>
-            </tr>
-          ) : (
-            data.map((row, index) => (
-              <tr key={row.id}>
-                <td>{offset * pageSize + index + 1}</td>
-                <td>{row.id}</td>
-                <td>{row.personName}</td>
-                <td>{row.aadharId}</td>
-                <td>{row.gender}</td>
+          </thead>
+          <tbody>
+            {loading ? (
+              <tr>
+                <td colSpan="5" style={{ textAlign: "center" }}>
+                  <Spinner />
+                </td>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+            ) : error ? (
+              <tr>
+                <td colSpan="5" style={{ textAlign: "center" }}>
+                  Error: {error.message}
+                </td>
+              </tr>
+            ) : (
+              data.map((row, index) => (
+                <tr key={row.id}>
+                  <td data-label="S.No">{offset * pageSize + index + 1}</td>
+                  <td data-label="ID">{row.id}</td>
+                  <td data-label="Name">{row.personName}</td>
+                  <td data-label="Aadhar Number">{row.aadharId}</td>
+                  <td data-label="Gender">{row.gender}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+
       <div className="pagination-controls">
         <button onClick={handlePrevClick} disabled={currentPage === 1}>
           Prev
@@ -146,17 +151,18 @@ const ClassicTable = () => {
         <button onClick={handleNextClick} disabled={currentPage === totalPages}>
           Next
         </button>
-        <div className="page-numbers">
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button
-              key={index}
-              onClick={() => handlePageClick(index + 1)}
-              className={currentPage === index + 1 ? "active" : ""}
-            >
-              {index + 1}
-            </button>
-          ))}
-        </div>
+      </div>
+
+      <div className="page-numbers">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => handlePageClick(index + 1)}
+            className={currentPage === index + 1 ? "active" : ""}
+          >
+            {index + 1}
+          </button>
+        ))}
       </div>
     </div>
   );
